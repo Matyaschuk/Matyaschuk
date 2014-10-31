@@ -11,10 +11,10 @@ pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-	<form action="MyServlet.html" method="post">
+	<form action="index.html" method="post">
 		<!-- Create fields for new employee -->
 		<txt> <b>Enter your Name, Surname and E-mail.</b></txt>
-		<fieldset>
+		
 			<table>
 				<tr>
 					<td>Name:</td>

@@ -1,17 +1,26 @@
 package com.academysmart.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import com.academysmart.exception.IncorrectEmailException;
 import com.academysmart.repository.EmployeeRepositorySingleton;
 
-@WebServlet("/MyServlet.html")
+@WebServlet("/index.html")
 public class EmployeesServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	public void init(ServletConfig conf) throws ServletException {
+		super.init(conf);
+		EmployeeRepositorySingleton.getDataBase();
+		}
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws IOException, ServletException {
@@ -37,6 +46,9 @@ public class EmployeesServlet extends HttpServlet {
 		} catch (ServletException | IncorrectEmailException e) {
 			String a = e.toString().substring(e.toString().indexOf(":") + 2);
 			request.setAttribute("errMsg", a);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		doGet(request, response);
 	}
